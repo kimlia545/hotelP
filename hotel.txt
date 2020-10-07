@@ -1,0 +1,154 @@
+CREATE TABLE logintb(
+	id VARCHAR(200) not null PRIMARY KEY ,
+	pw VARCHAR(100) NOT NULL,
+	name varchar(50) NOT NULL,
+	phone VARCHAR(100) NOT NULL,
+	email VARCHAR(200) NOT NULL,
+	code TEXT
+);
+
+CREATE TABLE hotel_Info(
+	idx 		INT 				PRIMARY KEY AUTO_INCREMENT,
+	ceoID		VARCHAR(100),
+	NAME		VARCHAR(100),
+	address	VARCHAR(100),
+	grade		FLOAT,
+	roomTypeAmount INT,
+	ceonumber VARCHAR(100)				
+); 
+
+CREATE TABLE hotel_GuestRoom(
+	roomNum		INT 	PRIMARY KEY AUTO_INCREMENT,
+	idx			INT,
+	roomType		VARCHAR(100),
+	roomAmount	INT,
+	roomPrice	INT,
+	minGuest		INT,
+	maxGuest		INT,
+	FOREIGN KEY(idx) REFERENCES hotel_Info(idx)
+);
+
+
+CREATE TABLE hotel_reservation(
+	rvNum			INT	PRIMARY KEY AUTO_INCREMENT,
+	idx			INT,
+	roomNum		INT,
+	rvName		VARCHAR(100),
+	rvID			VARCHAR(100),
+	rvHotelName	VARCHAR(100),
+	rvroomType	VARCHAR(100),
+	price			INT,
+	checkIn		DATE,
+	checkOut		DATE,
+	reviewWrite INT,
+	FOREIGN KEY(idx) REFERENCES hotel_Info(idx),
+	FOREIGN KEY(roomNum) REFERENCES hotel_GuestRoom(roomNum)
+);
+
+CREATE TABLE hotel_ReservationList(
+	idx			INT,
+	roomNum		INT,
+	rvDate		DATE,
+	FOREIGN KEY(idx) REFERENCES hotel_Info(idx),
+	FOREIGN KEY(roomNum) REFERENCES hotel_GuestRoom(roomNum)
+);
+
+CREATE TABLE hotel_review(
+	reviewNum		INT 	PRIMARY KEY AUTO_INCREMENT,
+	reviewNum_re	INT,
+	title				VARCHAR(50),
+	content			TEXT,
+	wdate				DATE,
+	grade				FLOAT,
+	id					VARCHAR(20),
+	rvNum				INT 		UNIQUE,
+	FOREIGN KEY(id) REFERENCES logintb(id)
+);
+
+CREATE TABLE invitetb(
+	idx INT AUTO_INCREMENT PRIMARY key,
+	invite VARCHAR(100),
+	invitegive VARCHAR(100),
+	codes TEXT,
+	time DATETIME
+);
+
+CREATE TABLE othertb(
+	reservation VARCHAR(100) NOT NULL,
+	title VARCHAR(255) NOT NULL,
+	requests TEXT NOT NULL,
+	idx text
+); 
+
+CREATE TABLE pickuptb(
+	reservation VARCHAR(100) NOT NULL,
+	phone VARCHAR(50) NOT NULL,
+	people VARCHAR(20) NOT NULL,
+	trip VARCHAR(20) NOT NULL,
+	arrivedate VARCHAR(100) NOT NULL,
+	arrivetime VARCHAR(10) NOT NULL,
+	arriveAP VARCHAR(60) NOT NULL,
+	arriveAPname VARCHAR(40) NOT NULL,
+	startdate VARCHAR(100) NOT NULL,
+	starttime VARCHAR(10) NOT NULL,
+	startAP VARCHAR(60) NOT NULL,
+	startAPname VARCHAR(40) NOT NULL,
+	requests TEXT,
+	idx text
+);
+
+CREATE TABLE incunpickuptb(
+	reservation VARCHAR(100) NOT NULL,
+	carben VARCHAR(10) NOT NULL,
+	startadd VARCHAR(255) NOT NULL,
+	arriveadd VARCHAR(255) NOT NULL,
+	reservationdate VARCHAR(100) NOT NULL,
+	reservationtime VARCHAR(10) NOT NULL,
+	people VARCHAR(20) NOT NULL,
+	baggagenum varchar(50) NOT NULL,
+	requests TEXT,
+	idx text
+);
+
+CREATE TABLE baggagetb(
+	reservation VARCHAR(100) NOT NULL,
+	entrust VARCHAR(200) NOT NULL,
+	entrustadd VARCHAR(200) NOT NULL,
+	entrustdate VARCHAR(50) NOT NULL,
+	entrusttime VARCHAR(30) NOT NULL,
+	entrustphone VARCHAR(50) NOT NULL,
+	find VARCHAR(200) NOT NULL,
+	findadd VARCHAR(200) NOT NULL,
+	finddate VARCHAR(50) NOT NULL,
+	findtime VARCHAR(30) NOT NULL,
+	findphone VARCHAR(50) NOT NULL,
+	mainapname VARCHAR(100) NOT NULL,
+	requests TEXT,
+	idx text
+);
+
+CREATE TABLE mypagetotaltb(
+	idx INT AUTO_INCREMENT PRIMARY KEY,
+	types VARCHAR(200) not null,
+	typeid VARCHAR(100) NOT NULL,
+	processd VARCHAR(50),
+	time DATETIME
+);
+
+CREATE TABLE hotelimg(
+	idx INT,
+	filname VARCHAR(100),
+	filerealname VARCHAR(512)
+); 
+
+CREATE TABLE roomimg(
+	hotelnumber INT,
+	roomnumber INT,
+	filname VARCHAR(100),
+	filerealname VARCHAR(512)
+); 
+
+CREATE DATABASE hotel;
+USE hotel;
+
+SELECT * FROM logintb;

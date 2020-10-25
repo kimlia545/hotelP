@@ -19,4 +19,7 @@
 ![mypage](https://user-images.githubusercontent.com/72369991/95707557-cf724e00-0c94-11eb-9ce4-fdf97e0835f9.png)
 
 # Tech/framework used
-Java
+* Java
+* JavaScript 
+* FrameWork : Spring
+* FrameWork DB : Oracle
